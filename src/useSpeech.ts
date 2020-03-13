@@ -18,6 +18,14 @@ const SpeechRecognition: typeof window.SpeechRecognition = window.SpeechRecognit
 /** A hook to use the SpeechRecognition api */
 export default function useSpeech(callback: (sentence: string) => void) {
     useEffect(() => {
+        // tslint:disable-next-line: strict-type-predicates
+        if (SpeechRecognition === undefined) {
+            console.error("Speech Recognition API is not supported in this browser, please use chrome");
+            alert("Please switch to chrome");
+
+            return undefined;
+        }
+
         let cont = true;
 
         const recog = new SpeechRecognition();

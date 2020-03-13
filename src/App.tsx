@@ -2,24 +2,47 @@
  * Copyright (C) 2020  Zachary Kohnen (DusterTheFirst)
  */
 
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
+import Gogle from "./sites/Gogle";
+import ShoppingSite from "./sites/ShoppingSite";
+import SocialCredit from "./sites/SocialCredit";
 import { GlobalStyle } from "./styles";
 import useSpeech from "./useSpeech";
+
+/** The paramaters that give each site its speech info */
+export interface ISpeechParams {
+    /** The current, most recent spoken sentence */
+    sentence: string;
+}
+
+/** A map of the sites to their components */
+const sites: { [x: string]: FunctionComponent<ISpeechParams> | undefined } = {
+    "gogle.com": Gogle,
+    "shoppingsite.bruh": ShoppingSite,
+    "socialcredit.gov": SocialCredit,
+};
 
 /** The main app component */
 export default function App() {
     const [sentence, setSentence] = useState("");
     useSpeech(setSentence);
 
+    const SiteContent = sites[window.location.host] ?? (() => (
+        <div>
+            This site has no content, please try one of the sites below
+            <ul>
+                {Object.keys(sites).map((x, key) => <li key={key}><a href={sites[x] === undefined ? undefined : `http://${x}/`}>{x}</a></li>)}
+            </ul>
+        </div>
+    ));
+
     return (
         <div>
             <GlobalStyle />
-            <pre>{sentence}</pre>
-            <a href="http://socialcredit.gov/">socialcredit.gov</a>
-            <br/>
-            <a href="http://gogle.com/">gogle.com</a>
-            <br/>
-            <a href="http://shoppingsite.bruh/">shoppingsite.bruh</a>
+            <SiteContent sentence={sentence} />
+            <ul>
+                {Object.keys(sites).map((x, key) => <li key={key}><a href={sites[x] === undefined ? undefined : `http://${x}/`}>{x}</a></li>)}
+            </ul>
         </div>
     );
 }

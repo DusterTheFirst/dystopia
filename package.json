@@ -14,10 +14,11 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "sudo PORT=80 react-scripts start",
+    "start": "cross-env PORT=80 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "serve": "serve -s build -p 80",
     "typecheck": "tsc --project . --noEmit",
     "lint": "tslint --project ."
   },
@@ -37,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "tslint": "^6.1.0",
     "tslint-react": "^4.2.0"
   }
