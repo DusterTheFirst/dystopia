@@ -4,7 +4,7 @@ This project is a submission to Mr. Joseph's C.Y.O.D
 ## Usage
 Install dependencies with yarn using `yarn`
 - To run in develpment, run `yarn start`
-- To run in "production", run `yarn build` to build the app and then run `yarn serve -s build` to serve the files
+- To run in "production", run `yarn build` to build the app and then run `yarn serve` to serve the files
 
 ### Setup
 The react app will mimic three sites using react router:
@@ -28,3 +28,6 @@ section of the flags and add the list below.
 ```
 http://socialcredit.gov, http://gogle.com, http://shoppingsite.bruh
 ```
+
+Once that is setup, you must start the state server using `yarn start-server` in a seperate command line. Once the server has started, you can now start the app
+using the commands above or reload the page if the app has already been started
