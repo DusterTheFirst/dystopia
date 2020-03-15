@@ -3,14 +3,12 @@
  */
 
 import React from "react";
-import { ISpeechParams } from "../App";
 
 /** The page gogle.com */
-export default function Gogle({ sentence }: ISpeechParams) {
+export default function Gogle() {
     return (
         <div>
             <h1>Welcome to gogle.com</h1>
-            <pre>{sentence}</pre>
         </div>
     );
 }

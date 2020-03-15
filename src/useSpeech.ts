@@ -36,7 +36,6 @@ export default function useSpeech(callback: (sentence: string) => void) {
         recog.start();
 
         recog.onresult = (event) => {
-            console.log(event.results[0][0].transcript);
             if (event.results[0].isFinal) {
                 callback(event.results[0][0].transcript);
             }
@@ -47,8 +46,6 @@ export default function useSpeech(callback: (sentence: string) => void) {
                 recog.start();
             }
         };
-
-        console.log(recog);
 
         return () => {
             cont = false;

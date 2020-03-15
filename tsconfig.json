@@ -20,7 +20,8 @@
     "jsx": "react",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "removeComments": false
   },
   "include": [
     "src"

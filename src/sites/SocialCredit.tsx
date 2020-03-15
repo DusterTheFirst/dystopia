@@ -3,15 +3,12 @@
  */
 
 import React from "react";
-import { ISpeechParams } from "../App";
 
 /** The page socialcredit.gov */
-export default function SocialCredit({ sentence }: ISpeechParams) {
+export default function SocialCredit() {
     return (
         <div>
             <h1>Welcome to SocialCredit.gov</h1>
-
-            <pre>{sentence}</pre>
         </div>
     );
 }
