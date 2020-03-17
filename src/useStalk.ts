@@ -18,14 +18,17 @@ export default function useStalk() {
 
     const sudoCommads: ICommandMap = {
         "exit sudo": () => setSudo(false),
-        "reset demo program state": () => state.score = 100
+        "reset state": () => state.score = 100
     };
 
     const commands: ICommandMap = {
         "enter sudo": () => setSudo(true),
+        "i am going to renounce my citizenship": () => state.score -= 50,
         "i disagree with the current government": () => state.score -= 10,
+        "i don't like mr josephs class": () => state.score -= 10_000_000,
+        "i don't like mr. joseph's class": () => state.score -= 10_000_000,
         "i hate the current government": () => state.score -= 20,
-        "i hate the president elect": () => state.score -= 15
+        "i hate the president elect": () => state.score -= 15,
     };
 
     useEffect(() => {
@@ -54,7 +57,7 @@ export default function useStalk() {
             if (command === undefined) {
                 console.log(`%c${sentence}`, "color: grey");
             } else {
-                console.log(`%c${sentence} %c| %c${command}`, "color: gold", "color: red", "color: pink");
+                console.log(`%c${sentence} %c| %c${command}`, "color: chartreuse", "color: red", "color: pink");
                 command();
             }
         }

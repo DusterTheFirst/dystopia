@@ -8,7 +8,7 @@ import Gogle from "./sites/Gogle";
 import ShoppingSite from "./sites/ShoppingSite";
 import SocialCredit from "./sites/SocialCredit";
 import { useHydratedState } from "./store";
-import { GlobalStyle } from "./styles";
+import { GlobalStyle } from "./styles/global";
 import useStalk from "./useStalk";
 
 /** The paramaters that give each site its speech info */
@@ -19,6 +19,7 @@ export interface ISpeechParams {
 
 /** A map of the sites to their components */
 const sites: { [x: string]: FunctionComponent | undefined } = {
+    "bureauofthought.gov": undefined,
     "gogle.com": Gogle,
     "shoppingsite.bruh": ShoppingSite,
     "socialcredit.gov": SocialCredit,
