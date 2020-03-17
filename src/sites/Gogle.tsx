@@ -9,6 +9,7 @@ import Highlighter from "react-highlight-words";
 import gogle from "../gogle.png";
 import { GlobalState } from "../store";
 import { FeedContent, FeedItem, FeedLink, FeedPath, FeedSeperator, FeedTimestamp, FeedTitle } from "../styles/feed";
+import { GogleHeader, GogleLogo, GoglePage, GogleResults, GogleResultsText, GogleSearchBar } from "../styles/gogle";
 
 dayjs.extend(relativeTime);
 
@@ -94,13 +95,16 @@ export default function Gogle() {
     const results = terms.length === 0 ? Object.keys(searches) : Object.keys(searches).filter(x => terms.some(y => x.toLowerCase().includes(y)));
 
     return (
-        <div>
-            <h1>Welcome to gogle.com</h1>
-            <img src={gogle} alt="gogle"/>
-            <input placeholder="Search" value={search.join(" ")} onChange={updateSearch} />
-            <div>{results.length} results</div>
-            {results.map((x, i) => <SearchResult key={i} link={searches[x].link} title={x} content={searches[x].desc} date={searches[x].date ?? dayjs("4-4-1984")} peanalty={searches[x].peanalty} terms={terms} />)}
-        </div>
+        <GoglePage>
+            <GogleHeader>
+                <GogleLogo src={gogle} alt="gogle"/>
+                <GogleSearchBar placeholder="Search" value={search.join(" ")} onChange={updateSearch} />
+            </GogleHeader>
+            <GogleResults>
+                <GogleResultsText>{results.length} results</GogleResultsText>
+                {results.map((x, i) => <SearchResult key={i} link={searches[x].link} title={x} content={searches[x].desc} date={searches[x].date ?? dayjs("4-4-1984")} peanalty={searches[x].peanalty} terms={terms} />)}
+            </GogleResults>
+        </GoglePage>
     );
 }
 
