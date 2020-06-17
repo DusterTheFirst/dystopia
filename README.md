@@ -6,6 +6,9 @@ Install dependencies with yarn using `yarn`
 - To run in develpment, run `yarn start`
 - To run in "production", run `yarn build` to build the app and then run `yarn serve` to serve the files
 
+> If you are in need of guidance on what you can do with the app, please check out the attached [script](SCRIPT.md) which was used
+to present this project
+
 ### Setup
 The react app will mimic three sites using react router:
 - socialcredit.gov
@@ -13,6 +16,7 @@ The react app will mimic three sites using react router:
 - shoppingsite.bruh
 - bureauofthought.gov
 
+#### Hosts
 You must add all of these domains to the `/etc/hosts` or on windows `C:\Windows\System32\drivers\etc\hosts` file pointing to 127.0.0.1
 in order for the mimic to work. A sample hosts file is below
 ```hosts

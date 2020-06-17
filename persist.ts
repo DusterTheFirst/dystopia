@@ -2,14 +2,14 @@
  * Copyright (C) 2020  Zachary Kohnen (DusterTheFirst)
  */
 
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { createServer } from "http";
+import { GlobalStateStore } from "./src/store";
+
+writeFileSync("./store.json", JSON.stringify(new GlobalStateStore()));
 
 /** The server for sync */
 const server = createServer((req, res) => {
-    if (!existsSync("./store.json")) {
-        writeFileSync("./store.json", "{}");
-    }
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     if (req.method === "GET") {

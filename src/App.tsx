@@ -5,7 +5,6 @@
 import { useObserver } from "mobx-react-lite";
 import React, { FunctionComponent } from "react";
 import Gogle from "./sites/Gogle";
-import ShoppingSite from "./sites/ShoppingSite";
 import SocialCredit from "./sites/SocialCredit";
 import { useHydratedState } from "./store";
 import { GlobalStyle } from "./styles/global";
@@ -21,7 +20,7 @@ export interface ISpeechParams {
 const sites: { [x: string]: FunctionComponent | undefined } = {
     "bureauofthought.gov": undefined,
     "gogle.com": Gogle,
-    "shoppingsite.bruh": ShoppingSite,
+    "shoppingsite.bruh": undefined,
     "socialcredit.gov": SocialCredit,
 };
 
@@ -40,7 +39,7 @@ export default function App() {
     ));
 
     return useObserver(() => (
-        <div>
+        <>
             <GlobalStyle />
             <SiteContent />
             {sudo ? "SUDO ENABLED" : undefined}
@@ -48,6 +47,6 @@ export default function App() {
             <ul>
                 {Object.keys(sites).map((x, key) => <li key={key}><a href={sites[x] === undefined ? undefined : `http://${x}/`}>{x}</a></li>)}
             </ul>
-        </div>
+        </>
     ));
 }

@@ -2,13 +2,20 @@
  * Copyright (C) 2020  Zachary Kohnen (DusterTheFirst)
  */
 
-import React from "react";
+import { useObserver } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { GlobalState } from "../store";
 
 /** The page socialcredit.gov */
 export default function SocialCredit() {
-    return (
+    const state = useContext(GlobalState);
+
+    return useObserver(() => (
         <div>
-            <h1>Welcome to SocialCredit.gov</h1>
+            <h2>The official website of the</h2>
+            <h1>National Social Credit Registry</h1>
+            <h2>Your social credit score is {state.score}</h2>
+            <pre>{JSON.stringify(state.history, undefined, 4)}</pre>
         </div>
-    );
+    ));
 }

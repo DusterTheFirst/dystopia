@@ -21,10 +21,12 @@ export const FeedItem = styled.div`
         box-shadow: 10px 10px 20px #cccccc;
     }
 `;
+
 /** The title element in a feed item */
 export const FeedTitle = styled.div`
     font-size: 25px;
 `;
+
 /** A link */
 export const FeedLink = styled.a`
     text-decoration: none;
@@ -36,22 +38,26 @@ export const FeedLink = styled.a`
         color: blueviolet;
     }
 `;
+
 /** The path to the link */
 export const FeedPath = styled.div`
     font-style: italic;
     font-size: 15px;
     color: forestgreen;
 `;
+
 /** The hr between the metadata and link info */
 export const FeedSeperator = styled.hr`
     margin: 3px 0;
     border: solid rgba(1,1,1,.2) 1px;
 `;
+
 /** The description */
 export const FeedContent = styled.div`
     font-size: 1.4em;
     color: dimgray;
 `;
+
 /** The timestamp */
 export const FeedTimestamp = styled.div`
     font-style: italic;

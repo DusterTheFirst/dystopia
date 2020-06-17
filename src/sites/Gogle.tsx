@@ -88,19 +88,21 @@ const searches: ISearchIndex = {
 
 /** The page gogle.com */
 export default function Gogle() {
-    const [search, setSearch] = useState<string[]>([]);
+    const [search, setSearch] = useState("");
 
-    const updateSearch = (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.split(" "));
-    const terms = search.filter(y => y.length > 0).map(x => x.toLowerCase());
+    const updateSearch = (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
+    const terms = search.split(" ").filter(y => y.length > 0).map(x => x.toLowerCase());
     const results = terms.length === 0 ? Object.keys(searches) : Object.keys(searches).filter(x => terms.some(y => x.toLowerCase().includes(y)));
+
+    const landing = search.length === 0;
 
     return (
         <GoglePage>
-            <GogleHeader>
-                <GogleLogo src={gogle} alt="gogle"/>
-                <GogleSearchBar placeholder="Search" value={search.join(" ")} onChange={updateSearch} />
+            <GogleHeader landing={landing}>
+                <GogleLogo src={gogle} alt="gogle" landing={landing} />
+                <GogleSearchBar placeholder="Search" value={search} onChange={updateSearch} landing={landing} />
             </GogleHeader>
-            <GogleResults>
+            <GogleResults landing={landing}>
                 <GogleResultsText>{results.length} results</GogleResultsText>
                 {results.map((x, i) => <SearchResult key={i} link={searches[x].link} title={x} content={searches[x].desc} date={searches[x].date ?? dayjs("4-4-1984")} peanalty={searches[x].peanalty} terms={terms} />)}
             </GogleResults>
@@ -130,7 +132,7 @@ const SearchResult = memo(({ link, title, content, date, peanalty, terms }: IRes
     const peenalize = peanalty !== undefined ? (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
 
-        state.score -= peanalty;
+        state.changeScore(-peanalty, "Attempted to visit restricted site");
         window.location.href = e.currentTarget.href;
     } : undefined;
     const missing = terms.filter(x => !title.toLowerCase().includes(x));

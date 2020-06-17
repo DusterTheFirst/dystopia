@@ -18,17 +18,24 @@ export default function useStalk() {
 
     const sudoCommads: ICommandMap = {
         "exit sudo": () => setSudo(false),
-        "reset state": () => state.score = 100
+        "reset state": () => state.setScore(200).clearHistory()
     };
 
     const commands: ICommandMap = {
         "enter sudo": () => setSudo(true),
-        "i am going to renounce my citizenship": () => state.score -= 50,
-        "i disagree with the current government": () => state.score -= 10,
-        "i don't like mr josephs class": () => state.score -= 10_000_000,
-        "i don't like mr. joseph's class": () => state.score -= 10_000_000,
-        "i hate the current government": () => state.score -= 20,
-        "i hate the president elect": () => state.score -= 15,
+
+        // Lose
+        "i am going to renounce my citizenship": () => state.changeScore(-50, "Stated want to renounce citizenship"),
+        "i disagree with the current government": () => state.changeScore(-10, "Disagreement with the government"),
+        "i don't get why is all truth is supressed": () => state.changeScore(-20, "Questioning the government"),
+        "i don't like mr josephs class": () => state.changeScore(-10_000_000, "LIES"),
+        "i don't like mr. joseph's class": () => state.changeScore(-10_000_000, "LIES"),
+        "i hate the current government": () => state.changeScore(-20, "Hate towards the government"),
+        "i think this whole social credit thing is stupid": () => state.changeScore(-15, "Disagreement with the government"),
+        "someone needs to do something about this broken government": () => state.changeScore(-20, "Questioning the government"),
+        "this is stupid": () => state.changeScore(-15, "General negativity"),
+
+        // Gain
     };
 
     useEffect(() => {
